@@ -1,4 +1,4 @@
-import { sortableCollection, order } from './types';
+import { sortableCollection, order } from '../sort';
 
 export class NumberCollection implements sortableCollection<number[]> {
   public data: number[];

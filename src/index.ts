@@ -1,7 +1,7 @@
-import { sort } from './utils/oopSort.js';
-import { NumberCollection } from './utils/NumberCollection.js';
-import { makeSampleArray } from './utils/util.js';
-import { StringCollection } from './utils/StringCollection.js';
+import { sort } from './utils/sort.js';
+import { NumberCollection } from './utils/collections/NumberCollection.js';
+import { makeSampleArray } from './utils/utils.js';
+import { StringCollection } from './utils/collections/StringCollection.js';
 
 const sample = makeSampleArray(100, 1, 1000);
 
