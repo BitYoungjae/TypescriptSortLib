@@ -26,11 +26,10 @@ export const lazySort = function*(
   order: order = 'ascending',
 ): Generator<any> {
   let index = 0;
-  const { data: arr } = collection;
 
-  while (index !== arr.length) {
+  while (index !== collection.data.length) {
     const foundIndex = findOne(collection, index, order);
-    yield arr[foundIndex];
+    yield collection.data[foundIndex];
 
     collection.swap(foundIndex, index);
     index += 1;

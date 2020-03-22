@@ -14,7 +14,7 @@ export const findOne = (
   const { data: arr } = collection;
   let index = from;
 
-  for (let i = from + 1; i < arr.length; i++) {
+  for (let i = from; i < arr.length; i++) {
     if (collection.compare(from, i, order)) {
       index = i;
     }

@@ -3,18 +3,17 @@ import { NumberCollection } from './utils/collections/NumberCollection.js';
 import { makeSampleArray } from './utils/utils.js';
 import { StringCollection } from './utils/collections/StringCollection.js';
 
-const sample = makeSampleArray(100, 1, 1000);
+const sample = makeSampleArray(20, 1, 1000);
 
-const text = new StringCollection('fjkdsjfals');
+const text = new StringCollection('lkjhgfdsapoiuytrewqmnbvcxz');
 const numbers = new NumberCollection(sample);
 
 sort(numbers, 'descending');
-sort(text, 'ascending');
-
-console.log(text.data);
-console.log(numbers.data);
-
 const lazy = lazySort(numbers, 'ascending');
-const lazyText = lazySort(text, 'descending');
+console.log(numbers.data);
 console.log([...lazy]);
+
+sort(text, 'descending');
+const lazyText = lazySort(text, 'ascending');
+console.log(text.data);
 console.log([...lazyText].join(''));
