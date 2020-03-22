@@ -1,11 +1,11 @@
-import { order } from '../sort';
+import { order, sortableCollection } from '../sort';
 
 interface ListNode {
   value: any;
   next?: ListNode;
 }
 
-export class LinkedList {
+export class LinkedList implements sortableCollection<LinkedList> {
   head: ListNode | null = null;
   data: LinkedList;
 
