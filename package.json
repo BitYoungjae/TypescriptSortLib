@@ -1,0 +1,21 @@
+{
+  "name": "sort",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./build/index.js",
+  "scripts": {
+    "start:build": "tsc -w --locale ko",
+    "start:run": "nodemon ./build/index.js",
+    "start": "concurrently npm:start:*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.1.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "typescript": "^3.8.3"
+  }
+}

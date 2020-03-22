@@ -1,0 +1,4 @@
+/report.*
+/*.tsbuildinfo
+/build
+/node_modules
