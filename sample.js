@@ -33,7 +33,7 @@ const lazyLinked = lazySort(linked, 'ascending');
 console.log([...lazyLinked]);
 
 sort(linked, 'descending');
-console.log(Array.from(linked.data));
+console.log(Array.from(linked.toArray()));
 
 linked.unshift('unshift 1');
 linked.unshift('unsfhit 2');
@@ -43,4 +43,7 @@ linked.push('push 1');
 linked.push('push 2');
 linked.pop();
 
-console.log(Array.from(linked.data));
+console.log(Array.from(linked.toArray()));
+
+const newList = LinkedList.from([1, 2, 3, 4]);
+console.log(newList.toArray());
