@@ -89,4 +89,36 @@ export class LinkedList implements sortableCollection<LinkedList> {
     first.value = second.value;
     second.value = temp;
   }
+
+  push(value: any): number {
+    this.add(value);
+    return this.length;
+  }
+
+  pop(): any {
+    if (!this.head) return undefined;
+    const { value: result } = LinkedList.getTail(this.head);
+    const prev = this.at(this.length - 2);
+    prev && delete prev.next;
+
+    return result;
+  }
+
+  unshift(value: any): number {
+    const node: ListNode = {
+      value,
+      next: this.head || undefined,
+    };
+
+    this.head = node;
+    return this.length;
+  }
+
+  shift(value: any): any {
+    if (!this.head) return undefined;
+    const { value: result, next } = this.head;
+    this.head = next || null;
+
+    return result;
+  }
 }
