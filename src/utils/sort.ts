@@ -1,3 +1,5 @@
+import { findOne } from './utils.js';
+
 export interface sortableCollection<T> {
   data: T;
   swap: (firstIndex: number, secondIndex: number) => void;
@@ -16,5 +18,21 @@ export const sort = (collection: sortableCollection<any>, order: order) => {
 
       if (collection.compare(now, next, order)) collection.swap(now, next);
     }
+  }
+};
+
+export const lazySort = function*(
+  collection: sortableCollection<any>,
+  order: order = 'ascending',
+): Generator<any> {
+  let index = 0;
+  const { data: arr } = collection;
+
+  while (index !== arr.length) {
+    const foundIndex = findOne(collection, index, order);
+    yield arr[foundIndex];
+
+    collection.swap(foundIndex, index);
+    index += 1;
   }
 };

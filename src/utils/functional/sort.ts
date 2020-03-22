@@ -1,4 +1,4 @@
-import { swap, findMax } from '../utils.js';
+import { swap } from '../utils.js';
 
 export const bubbleSort = (arr: number[]): number[] => {
   const coppied = [...arr];
@@ -15,17 +15,4 @@ export const bubbleSort = (arr: number[]): number[] => {
   }
 
   return coppied;
-};
-
-export const lazySort = function*(arr: number[]): Generator<number> {
-  let index = 0;
-  const coppied = [...arr];
-
-  while (index !== coppied.length) {
-    const { max, maxIndex } = findMax(coppied, index);
-    yield max;
-
-    swap(coppied, index, maxIndex);
-    index += 1;
-  }
 };

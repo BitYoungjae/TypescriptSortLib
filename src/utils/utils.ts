@@ -1,23 +1,26 @@
+import { sortableCollection, order } from './sort';
+
 export const swap = (arr: number[], first: number, second: number): void => {
   const temp = arr[first];
   arr[first] = arr[second];
   arr[second] = temp;
 };
 
-export const findMax = (arr: number[], from = 0) => {
-  let max = arr[from];
-  let maxIndex = from;
+export const findOne = (
+  collection: sortableCollection<any>,
+  from = 0,
+  order: order = 'ascending',
+): number => {
+  const { data: arr } = collection;
+  let index = from;
 
   for (let i = from + 1; i < arr.length; i++) {
-    const now = arr[i];
-
-    if (max < now) {
-      max = now;
-      maxIndex = i;
+    if (collection.compare(from, i, order)) {
+      index = i;
     }
   }
 
-  return { max, maxIndex };
+  return index;
 };
 
 export const makeRandomNum = (min = 0, max = 100): number => {
