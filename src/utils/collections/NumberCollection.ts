@@ -9,7 +9,11 @@ export class NumberCollection implements sortableCollection<number[]> {
     this.data[secondIndex] = temp;
   }
 
-  compare(firstIndex: number, secondIndex: number, order: order): boolean {
+  compare(
+    firstIndex: number,
+    secondIndex: number,
+    order: order = 'ascending',
+  ): boolean {
     const first = this.data[firstIndex];
     const second = this.data[secondIndex];
 
