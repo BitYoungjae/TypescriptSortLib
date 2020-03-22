@@ -34,3 +34,13 @@ console.log([...lazyLinked]);
 
 sort(linked, 'descending');
 console.log(Array.from(linked.data));
+
+linked.unshift('unshift 1');
+linked.unshift('unsfhit 2');
+linked.unshift('unshift 3');
+linked.shift();
+linked.push('push 1');
+linked.push('push 2');
+linked.pop();
+
+console.log(Array.from(linked.data));
