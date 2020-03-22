@@ -5,7 +5,7 @@
   "main": "./build/index.js",
   "scripts": {
     "start:build": "tsc -w --locale ko",
-    "start:run": "nodemon ./build/index.js",
+    "start:run": "nodemon -w . ./sample.js",
     "start": "concurrently npm:start:*"
   },
   "keywords": [],
