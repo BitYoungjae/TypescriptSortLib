@@ -121,4 +121,17 @@ export class LinkedList implements sortableCollection<LinkedList> {
 
     return result;
   }
+
+  static from(iter: Iterable<any>): LinkedList {
+    const list = new LinkedList();
+    for (const one of iter) {
+      list.add(one);
+    }
+
+    return list;
+  }
+
+  toArray(): any[] {
+    return Array.from(this.data);
+  }
 }
