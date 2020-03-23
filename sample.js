@@ -49,4 +49,5 @@ console.log(Array.from(linked.toArray()));
 const newList = LinkedList.from([1, 2, 3, 4]);
 newList.set(2, 99); // replace value of index 2 with 99
 newList.length = 3; // (Array-like) delete rest nodes using length property
+newList.data[0] = 3; // (Array-like) update node using [] syntax
 console.log(newList.toArray());

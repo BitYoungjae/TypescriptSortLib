@@ -10,15 +10,27 @@ export class LinkedList implements sortableCollection<LinkedList> {
   data: LinkedList;
 
   constructor() {
+    const isNumber = (prop: string | symbol | number): boolean =>
+      typeof prop === 'string' && /^[0-9]+$/.test(prop);
+
     this.data = new Proxy(this, {
       get(target, prop, reciever) {
-        if (typeof prop === 'string' && /^[0-9]+$/.test(prop)) {
-          const data = target.at(+prop);
+        if (isNumber(prop)) {
+          const data = target.at(Number(prop));
           return data && data.value;
         }
 
         if (Reflect.has(target, prop))
           return Reflect.get(target, prop, reciever);
+      },
+      set(target, prop, value, reciever): boolean {
+        if (isNumber(prop)) {
+          const result = target.set(Number(prop), value);
+          if (result) return true;
+          return false;
+        }
+
+        return Reflect.set(target, prop, value, reciever);
       },
     });
   }
@@ -56,11 +68,12 @@ export class LinkedList implements sortableCollection<LinkedList> {
     return head;
   }
 
-  set(index: number, value: any) {
+  set(index: number, value: any): boolean {
     const targetNode = this.at(index);
-    if (!targetNode) return value;
+    if (!targetNode) return false;
 
     targetNode.value = value;
+    return true;
   }
 
   get length(): number {
