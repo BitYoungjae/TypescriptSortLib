@@ -75,6 +75,13 @@ export class LinkedList implements sortableCollection<LinkedList> {
     return len;
   }
 
+  set length(len: number) {
+    const lastNode = this.at(len - 1);
+    if (!lastNode) return;
+
+    delete lastNode.next;
+  }
+
   compare(firstIndex: number, secondIndex: number, order: order): boolean {
     const first = this.at(firstIndex);
     const second = this.at(secondIndex);
