@@ -34,6 +34,8 @@ export class LinkedList implements sortableCollection<LinkedList> {
 
   constructor() {
     this.data = new Proxy(this, proxyHandler);
+
+    return this.data;
   }
 
   static getTail(head: ListNode): ListNode {
