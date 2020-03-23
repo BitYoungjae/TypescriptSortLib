@@ -56,6 +56,13 @@ export class LinkedList implements sortableCollection<LinkedList> {
     return head;
   }
 
+  set(index: number, value: any) {
+    const targetNode = this.at(index);
+    if (!targetNode) return value;
+
+    targetNode.value = value;
+  }
+
   get length(): number {
     if (!this.head) return 0;
 

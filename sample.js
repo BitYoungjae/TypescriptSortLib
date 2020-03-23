@@ -46,4 +46,5 @@ linked.pop();
 console.log(Array.from(linked.toArray()));
 
 const newList = LinkedList.from([1, 2, 3, 4]);
+newList.set(2, 99);
 console.log(newList.toArray());
