@@ -5,34 +5,35 @@ interface ListNode {
   next?: ListNode;
 }
 
+const isNumber = (prop: string | symbol | number): boolean =>
+  typeof prop === 'string' && /^[0-9]+$/.test(prop);
+
+const proxyHandler: ProxyHandler<any> = {
+  get(target, prop, reciever) {
+    if (isNumber(prop)) {
+      const data = target.at(Number(prop));
+      return data && data.value;
+    }
+
+    if (Reflect.has(target, prop)) return Reflect.get(target, prop, reciever);
+  },
+  set(target, prop, value, reciever): boolean {
+    if (isNumber(prop)) {
+      const result = target.set(Number(prop), value);
+      if (result) return true;
+      return false;
+    }
+
+    return Reflect.set(target, prop, value, reciever);
+  },
+};
+
 export class LinkedList implements sortableCollection<LinkedList> {
   head: ListNode | null = null;
   data: LinkedList;
 
   constructor() {
-    const isNumber = (prop: string | symbol | number): boolean =>
-      typeof prop === 'string' && /^[0-9]+$/.test(prop);
-
-    this.data = new Proxy(this, {
-      get(target, prop, reciever) {
-        if (isNumber(prop)) {
-          const data = target.at(Number(prop));
-          return data && data.value;
-        }
-
-        if (Reflect.has(target, prop))
-          return Reflect.get(target, prop, reciever);
-      },
-      set(target, prop, value, reciever): boolean {
-        if (isNumber(prop)) {
-          const result = target.set(Number(prop), value);
-          if (result) return true;
-          return false;
-        }
-
-        return Reflect.set(target, prop, value, reciever);
-      },
-    });
+    this.data = new Proxy(this, proxyHandler);
   }
 
   static getTail(head: ListNode): ListNode {
