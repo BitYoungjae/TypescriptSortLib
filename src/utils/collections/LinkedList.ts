@@ -12,13 +12,13 @@ export class LinkedList implements sortableCollection<LinkedList> {
   constructor() {
     this.data = new Proxy(this, {
       get(target, prop, reciever) {
-        if (Reflect.has(target, prop))
-          return Reflect.get(target, prop, reciever);
-
         if (typeof prop === 'string' && /^[0-9]+$/.test(prop)) {
           const data = target.at(+prop);
           return data && data.value;
         }
+
+        if (Reflect.has(target, prop))
+          return Reflect.get(target, prop, reciever);
       },
     });
   }
